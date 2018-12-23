@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>ThaiCreate.Com PHP & MySQL (mysqli)</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+</head>
+
+  <style>
+body, html {height: 100%}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+.menu {display: none}
+.bgimg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("222.jpg");
+    min-height: 90%;
+}
+</style>
+<body>
+<!-- Navbar (sit on top) -->
+
+<div class="w3-top w3-hide-small">
+  <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
+    <a href="Index1.php" class="w3-bar-item w3-button">HOME</a>
+    <a href="MANU.php" class="w3-bar-item w3-button">BOOKS</a>
+    <a href="product.php" class="w3-bar-item w3-button">SHOPPING BASKET</a>
+    <a href="1.php" class="w3-bar-item w3-button">EDIT PROFILE</a>
+    <a href="Index.php" class="w3-bar-item w3-button">LOGOUT</a>
+
+  </div>
+</div>
+
+<?php
+  ini_set('display_errors', 1);
+  error_reporting(~0);
+
+  $serverName = "localhost";
+  $userName = "root";
+  $userPassword = "";
+  $dbName = "books";
+
+  $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
+
+  $sql = "SELECT * FROM customer";
+
+  $query = mysqli_query($conn,$sql);
+?>
+<center>
+  <br> <br> <br>
+  <table width="650" border="1">
+  <tr>
+    <?php
+session_start();
+
+require_once("connect.php");
+?>
+    <th width="91"> <div align="center">CustomerID </div></th>
+    <th width="98"> <div align="center">Name </div></th>
+    <th width="198"> <div align="center">Last Name </div></th>
+    <th width="97"> <div align="center">Phone </div></th>
+    <th width="59"> <div align="center">Add </div></th>
+    <th width="71"> <div align="center">Email </div></th>
+    <th width="59"> <div align="center">user </div></th>
+    <th width="71"> <div align="center">password </div></th>
+  <th width="50"> <div align="center">Edit </div></th>
+  </tr>
+
+  <tr>
+    <td><div align="center"><?php echo $_SESSION['c_id'];?></div></td>
+    <td><?php echo $_SESSION['c_name'];?></td>
+    <td><?php echo $_SESSION['c_last'] ;?></td>
+    <td><div align="center"><?php echo $_SESSION["c_phone"];?></div></td>
+     <td align="right"><?php echo $_SESSION["c_add"];?></td>
+      <td align="right"><?php echo $_SESSION["c_email"];?></td>
+    <td align="right"><?php echo $_SESSION["c_user"];?></td>
+    <td align="right"><?php echo $_SESSION["c_pass"];?></td>
+  <td align="center"><a href="22.php?c_id=<?php echo $_SESSION["c_id"];?>">Edit</a></td>
+  </tr>
+<?php
+
+?>
+</table>
+
+</center>
+<?php
+mysqli_close($conn);
+?>
+
+
+</body>
+</html>
